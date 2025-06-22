@@ -13,11 +13,16 @@
 
       <!-- 
         Asset Management System
-        We preload the image texture here to ensure it's ready before the scene renders.
+        We preload all image textures here to ensure they're ready before the scene renders.
         crossorigin="anonymous" is important for loading external assets in WebGL.
       -->
       <a-assets>
         <img id="sentinel-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/pic.png" crossorigin="anonymous">
+        <img id="floor-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/floor.png" crossorigin="anonymous">
+        <img id="sky-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/sky.png" crossorigin="anonymous">
+        <img id="wall-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/wall.png" crossorigin="anonymous">
+        <img id="wall2-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/wall2.png" crossorigin="anonymous">
+        <img id="window-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/window.png" crossorigin="anonymous">
       </a-assets>
 
       <!-- 
@@ -28,23 +33,23 @@
         The floor is at y=0.
       -->
 
-      <!-- Floor -->
+      <!-- Floor with texture -->
       <a-plane
         position="0 0 0" 
         rotation="-90 0 0"
         width="3"
         height="3"
-        color="#222831"
+        src="#floor-texture"
         shadow="receive: true">
       </a-plane>
 
-      <!-- Ceiling -->
+      <!-- Ceiling with sky texture -->
       <a-plane
         position="0 3 0"
         rotation="90 0 0"
         width="3"
         height="3"
-        color="#EEEEEE">
+        src="#sky-texture">
       </a-plane>
 
       <!-- Back Wall with Sentinel Image Texture -->
@@ -56,31 +61,31 @@
         src="#sentinel-texture">
       </a-plane>
       
-      <!-- Front Wall -->
+      <!-- Front Wall with window texture -->
       <a-plane
         position="0 1.5 1.5"
         rotation="0 180 0"
         width="3"
         height="3"
-        color="#393E46">
+        src="#window-texture">
       </a-plane>
 
-      <!-- Left Wall -->
+      <!-- Left Wall with wall texture -->
       <a-plane
         position="-1.5 1.5 0"
         rotation="0 90 0"
         width="3"
         height="3"
-        color="#FF2E63">
+        src="#wall-texture">
       </a-plane>
 
-      <!-- Right Wall -->
+      <!-- Right Wall with wall2 texture -->
       <a-plane
         position="1.5 1.5 0"
         rotation="0 -90 0"
         width="3"
         height="3"
-        color="#EAEAEA">
+        src="#wall2-texture">
       </a-plane>
 
       <!-- 
