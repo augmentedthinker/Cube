@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VR Cube Room</title>
+    <meta name="description" content="A simple VR cube room with an image on one wall, built with A-Frame.">
+    <!-- A-Frame VR Framework -->
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <!-- The a-scene component is the root of all A-Frame content. It sets up the WebGL canvas, renderer, and camera. -->
+    <a-scene>
+
+      <!-- 
+        Asset Management System
+        We preload all image textures here to ensure they're ready before the scene renders.
+        crossorigin="anonymous" is important for loading external assets in WebGL.
+      -->
+      <a-assets>
+        <img id="sentinel-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/pic.png" crossorigin="anonymous">
+        <img id="floor-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/floor.png" crossorigin="anonymous">
+        <img id="sky-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/sky.png" crossorigin="anonymous">
+        <img id="wall-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/wall.png" crossorigin="anonymous">
+        <img id="wall2-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/wall2.png" crossorigin="anonymous">
+        <img id="window-texture" src="https://raw.githubusercontent.com/augmentedthinker/Virtual/main/window.png" crossorigin="anonymous">
+      </a-assets>
+
+      <!-- 
+        The Room (10x10x10 feet, which is ~3x3x3 meters)
+        We create the room using 6 planes, one for each surface (floor, ceiling, 4 walls).
+        This allows us to give each surface a unique color or texture.
+        The room is 3 meters wide, 3 meters deep, and 3 meters high.
+        The floor is at y=0.
+      -->
+
+      <!-- Floor with texture -->
+      <a-plane
+        position="0 0 0" 
+        rotation="-90 0 0"
+        width="3"
+        height="3"
+        src="#floor-texture"
+        shadow="receive: true">
+      </a-plane>
+
+      <!-- Ceiling with sky texture -->
+      <a-plane
+        position="0 3 0"
+        rotation="90 0 0"
+        width="3"
+        height="3"
+        src="#sky-texture">
+      </a-plane>
+
+      <!-- Back Wall with Sentinel Image Texture -->
+      <a-plane
+        position="0 1.5 -1.5"
+        rotation="0 0 0"
+        width="3"
+        height="3"
+        src="#sentinel-texture">
+      </a-plane>
+      
+      <!-- Front Wall with window texture -->
+      <a-plane
+        position="0 1.5 1.5"
+        rotation="0 180 0"
+        width="3"
+        height="3"
+        src="#window-texture">
+      </a-plane>
+
+      <!-- Left Wall with wall texture -->
+      <a-plane
+        position="-1.5 1.5 0"
+        rotation="0 90 0"
+        width="3"
+        height="3"
+        src="#wall-texture">
+      </a-plane>
+
+      <!-- Right Wall with wall2 texture -->
+      <a-plane
+        position="1.5 1.5 0"
+        rotation="0 -90 0"
+        width="3"
+        height="3"
+        src="#wall2-texture">
+      </a-plane>
+
+      <!-- 
+        Sky / Background
+        A simple color for the background that is visible if you were to exit the cube.
+      -->
+      <a-sky color="#111"></a-sky>
+
+      <!-- 
+        Camera & Controls
+        A-Frame automatically adds a default camera with controls at position="0 1.6 0".
+        Since our room floor is at y=0 and the ceiling is at y=3, this default camera
+        starts perfectly inside the room at a realistic eye-level height.
+        No need to add an explicit camera entity for this simple setup.
+      -->
+
+    </a-scene>
+  </body>
+</html>
